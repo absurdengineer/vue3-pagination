@@ -11,6 +11,7 @@
     <li
       :style="sizeStyle"
       :class="{
+        'vue3-pagination-not-allowed': 1 >= currentPage,
         'vue3-pagination-pagination-item': [undefined, null, ''].includes(
           paginationItemClass
         ),
@@ -24,12 +25,13 @@
           [paginationLinkClass]: paginationLinkClass,
           'vue3-pagination-not-allowed': 1 >= currentPage,
         }"
-        ><i class="fas fa-backward-fast"></i
-      ></a>
+        ><img src="./assets/first.png" :style="sizeStyle" alt=""
+      /></a>
     </li>
     <li
       :style="sizeStyle"
       :class="{
+        'vue3-pagination-not-allowed': 1 >= currentPage,
         'vue3-pagination-pagination-item': [undefined, null, ''].includes(
           paginationItemClass
         ),
@@ -43,8 +45,9 @@
           'vue3-pagination-not-allowed': 1 >= currentPage,
           [paginationLinkClass]: paginationLinkClass,
         }"
-        ><i class="fas fa-angles-left"></i
-      ></a>
+      >
+        <img src="./assets/previous.png" :style="sizeStyle" alt=""
+      /></a>
     </li>
     <li
       v-for="i in range"
@@ -75,6 +78,7 @@
     <li
       :style="sizeStyle"
       :class="{
+        'vue3-pagination-not-allowed': totalPage <= currentPage,
         'vue3-pagination-pagination-item': [undefined, null, ''].includes(
           paginationItemClass
         ),
@@ -91,12 +95,13 @@
           [paginationLinkClass]: paginationLinkClass,
         }"
       >
-        &gt;
+        <img src="./assets/next.png" :style="sizeStyle" alt="" />
       </a>
     </li>
     <li
       :style="sizeStyle"
       :class="{
+        'vue3-pagination-not-allowed': totalPage <= currentPage,
         'vue3-pagination-pagination-item': [undefined, null, ''].includes(
           paginationItemClass
         ),
@@ -110,9 +115,8 @@
           'vue3-pagination-not-allowed': totalPage <= currentPage,
           [paginationLinkClass]: paginationLinkClass,
         }"
-        ><svg class="icon icon-circle-right">
-          <use xlink:href="#icon-circle-right"></use></svg
-      ></a>
+        ><img src="./assets/last.png" :style="sizeStyle" alt=""
+      /></a>
     </li>
   </ul>
 </template>
@@ -120,7 +124,6 @@
 <script>
 export default {
   name: "Pagination",
-  components: {},
   props: {
     currentPage: {
       type: Number,
@@ -128,7 +131,7 @@ export default {
     },
     pageCount: {
       type: Number,
-      default: 1,
+      default: 5,
     },
     totalPage: {
       type: Number,
@@ -206,7 +209,13 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
 .vue3-pagination-pagination-container {
+  font-family: "Gideon Roman", cursive;
   display: flex;
 }
 .vue3-pagination-pagination-item {
@@ -227,8 +236,21 @@ export default {
   display: flex;
   padding: auto;
 }
+.vue3-pagination-pagination-item a img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
 .vue3-pagination-active {
   border-radius: 100%;
+  background: #0f5298;
+}
+.vue3-pagination-active a {
+  color: #fff;
+  font-weight: bold;
 }
 .vue3-pagination-not-allowed {
   cursor: not-allowed;
