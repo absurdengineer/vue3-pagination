@@ -48,5 +48,15 @@
   },
   "engines": {
     "node": ">=12"
-  }
+  },
+  "keywords": [
+    "pagination",
+    "vue-pagination",
+    "vue3-pagination",
+    "pagination-vue",
+    "pagination-vue3",
+    "paginate",
+    "pagination"
+  ],
+  "repository": "https://github.com/webformulator/vue3-pagination"
 }
